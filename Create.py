@@ -1,7 +1,7 @@
 import bsddb3 as bsddb
 import random
 
-DB_SIZE = 1000
+DB_SIZE = 100000
 SEED = 10000000
 DA_FILE = ""
 
