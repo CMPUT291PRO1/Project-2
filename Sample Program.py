@@ -17,11 +17,11 @@ def get_random_char():
 
 
 def main():
-    #try:
-    #    db = bsddb.btopen(DA_FILE, "w")
-    #except:
-    #    print("DB doesn't exist, creating a new one")
-    #    db = bsddb.btopen(DA_FILE, "c")
+    try:
+        db = bsddb.btopen(DA_FILE, "w")
+    except:
+        print("DB doesn't exist, creating a new one")
+        db = bsddb.btopen(DA_FILE, "c")
     random.seed(SEED)
 
     for index in range(DB_SIZE):
@@ -38,11 +38,11 @@ def main():
         print ("")
         key = key.encode(encoding='UTF-8')
         value = value.encode(encoding='UTF-8')
-        #db[key] = value
-    #try:
-    #    db.close()
-    #except Exception as e:
-    #    print (e)
+        db[key] = value
+    try:
+        db.close()
+    except Exception as e:
+        print (e)
 
 if __name__ == "__main__":
     main()

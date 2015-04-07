@@ -1,4 +1,0 @@
-#!/bin/bash
-if [ -n "$1" ]; then
-  python ./Base.py $1
-fi

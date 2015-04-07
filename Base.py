@@ -30,7 +30,7 @@ while(True):
     print("4. Retrieve records with a given range of key values")
     print("5. Destroy the database")
     print("6. Quit \n")
-    selection = input("Please select your program number:\n")
+    selection = raw_input("Please select your program number:\n")
     
     try:
         digit = int(selection)
