@@ -3,7 +3,7 @@ import random
 
 DB_SIZE = 100000
 SEED = 10000000
-DA_FILE = ""
+DA_FILE = "/tmp/my_db/sample_db"
 
 
 def progOption (option):
