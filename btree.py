@@ -15,8 +15,6 @@ def keySearch_Btree():
 	except:
 		print("Error opening database.")	
 	
-	# currently I get key by user input 
-	#TODO??????---------- should we get key through other method? like generating one?	
 	key = input("Please enter your key:").encode(encoding='UTF-8')
 	
 	# record staring time
@@ -74,8 +72,8 @@ def valueSearch_Btree():
 			print("Retrieved records: ", len(retrievedKeys))
 			print("Keys referring to this data: ", retrievedKeys)
 		
-#		else:
-#			print("Data does not exist in database.")
+	if not retrievedKeys:
+		print("Data does not exist in database.")
 		
 	
 
