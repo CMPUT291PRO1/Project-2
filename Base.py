@@ -44,24 +44,24 @@ while(True):
             Create.dbOpen(option)
             
         elif digit == 2:
-            if(option == btree):
-                btree.keySearch_Btree()
+            if(option == "btree"):
+                btree.keySearch_Btree(file)
             elif(option == "hash"):
                 hashTree.keySearch_Hashtree(file)
             else:
                 pass
             
         elif digit == 3:
-            if(option == btree):
-                btree.valueSearch_Btree()
+            if(option == "btree"):
+                btree.valueSearch_Btree(file)
             elif(option == "hash"):
                 hashTree.valueSearch_Hashtree(file)
             else:
                 pass
             
         elif digit == 4:
-            if(option == btree):
-                btree.rangeSearch_Btree()
+            if(option == "btree"):
+                btree.rangeSearch_Btree(file)
             elif(option == "hash"):
                 hashTree.rangeSearch_Hashtree(file)
             else:
