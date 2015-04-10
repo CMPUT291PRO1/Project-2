@@ -71,7 +71,6 @@ while(True):
             destroy.destroy()
             
         elif digit == 6:
-            destroy.destroy()
             file.close()
             break
         
