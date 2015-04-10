@@ -1,11 +1,11 @@
 import bsddb3 as bsddb
 import Create
-import timeit
+import time
 
 DA_FILE = "/tmp/nmcarrol_db/sample_db"
 
 # get option from Base function
-def keySearch_Btree(file):
+def keySearch_Btree(f):
 	
 	print("BTREE key search")
 	print("==========================================================")
@@ -18,7 +18,7 @@ def keySearch_Btree(file):
 	key = input("Please enter your key:").encode(encoding='UTF-8')
 	
 	# record staring time
-	start_time = timeit.timeit()
+	start_time = time.time()
 	
 	if db.has_key(key):
 		value = db[key]
@@ -37,13 +37,13 @@ def keySearch_Btree(file):
 		print (e)
 		
 	# record ending time
-	end_time = timeit.timeit()
+	end_time = time.time()
 	# compute time consumed
 	print("Time used on BTREE key search is", end_time - start_time)
-	file.write(key + "\n" + value + "\n\n")
+	f.write(key.decode(encoding = 'UTF-8') + "\n" + value.decode(encoding = 'UTF-8') + "\n\n")
 	
 
-def valueSearch_Btree(file):
+def valueSearch_Btree(f):
 	
 	print("BTREE value search")
 	print("==========================================================")	
@@ -56,7 +56,7 @@ def valueSearch_Btree(file):
 	data = input("Please enter data value:").encode(encoding='UTF-8')
 	
 	# record staring time
-	start_time = timeit.timeit()
+	start_time = time.time()
 
 	retrievedKeys = []
 
@@ -65,7 +65,7 @@ def valueSearch_Btree(file):
 			retrievedKeys.append(key.decode(encoding = 'UTF-8'))
 
 			# record ending timekeySearch_Btree()
-			end_time = timeit.timeit()
+			end_time = time.time()
 			# compute time consumed
 			print("Time used on BTREE key search is", end_time - start_time)
 		
@@ -77,7 +77,7 @@ def valueSearch_Btree(file):
 		print("Data does not exist in database.")
 		
 	for key in retrievedKeys:
-		file.write(key + "\n" + data.decode(encoding = 'UTF-8') + "\n\n")
+		f.write(key + "\n" + data.decode(encoding = 'UTF-8') + "\n\n")
 		
 	# IMPORTANT: CLOSE THE DATABASE
 	try:
@@ -87,7 +87,7 @@ def valueSearch_Btree(file):
 		
 	
 
-def rangeSearch_Btree(file):
+def rangeSearch_Btree(f):
 	
 	print("BTREE range search")
 	print("==========================================================")
@@ -96,9 +96,6 @@ def rangeSearch_Btree(file):
 		db = bsddb.btopen(DA_FILE,"r")
 	except:
 		print("Error opening database.")
-			
-	# record staring time
-	start_time = timeit.timeit()
 	
 	checking = True
 	while checking:
@@ -109,6 +106,9 @@ def rangeSearch_Btree(file):
 			print("Invalid range. Try again.")
 			checking = True
 	
+	# record staring time
+	start_time = time.time()
+	
 	in_range_keys = []
 	keys = db.keys()
 	for i in range(len(db)):
@@ -118,14 +118,14 @@ def rangeSearch_Btree(file):
 	print("Retrieved record: ", len(in_range_keys))
 	
 	# record ending time
-	end_time = timeit.timeit()
+	end_time = time.time()
 	# compute time consumed
 	print("Time used on BTREE key search is", end_time - start_time)
 	
 	for i in range(len(in_range_keys) ):
 		key = in_range_keys[i].decode(encoding = 'UTF-8')
 		value = db[in_range_keys[i]].decode(encoding = 'UTF-8')
-		file.write(key.decode(encoding = 'UTF-8') + "\n" + value.decode(encoding = 'UTF-8') + "\n\n")
+		f.write(key + "\n" + value+ "\n\n")
 	
 	# IMPORTANT: CLOSE THE DATABASE
 	try:
@@ -134,8 +134,8 @@ def rangeSearch_Btree(file):
 		print (e)
 
 if __name__ == "__main__":
-
+	f = open("answers.txt", 'w')
 	Create.bTree()
-	keySearch_Btree()
-	valueSearch_Btree()
-	rangeSearch_Btree()
+	keySearch_Btree(f)
+	valueSearch_Btree(f)
+	rangeSearch_Btree(f)
