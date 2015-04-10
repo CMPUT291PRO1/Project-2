@@ -1,3 +1,9 @@
+(in micro seconds)
+
+Btree Key Search: 0.00032401084899902344 
+Btree Data Search: 0.22724103927612305
+Btree Range Search: 7.681425094604492(78971 record retrieved)
+
 Hash Key Search: 0.00025930404
 Hash Data Search: 0.88059153556
 Hash Range Search: 0.25824270248
