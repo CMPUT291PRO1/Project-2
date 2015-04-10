@@ -36,17 +36,20 @@ def valueSearch_Hashtree(file):
     for key in db.keys():    
         if db[key] == data:
             retrievedKeys.append(key.decode(encoding = 'UTF-8'))
-            file.write(key + "\n" + data + "\n\n")
+            
             
     # compute time consumed
     print("Time used on HashTree key search is", time.time()-start_time)
         
     # print result
     print("Retrieved records: ", len(retrievedKeys))
-    print("Keys referring to this data: ", retrievedKeys)
+
         
     if not retrievedKeys:
         print("Data does not exist in database.")
+        
+    for key in retrievedKeys:
+        file.write(key + "\n" + data + "\n\n")
         
     
     # IMPORTANT: CLOSE THE DATABASE
@@ -95,8 +98,6 @@ def rangeSearch_Hashtree(file):
     for i in range(len(in_range_keys) ):
         key = in_range_keys[i].decode(encoding = 'UTF-8')
         value = db[in_range_keys[i]].decode(encoding = 'UTF-8')
-        print("Key:", key)
-        print("Value: ", value)
         file.write(key + "\n" + value + "\n\n")
         
     # IMPORTANT: CLOSE THE DATABASE
@@ -123,8 +124,6 @@ def keySearch_Hashtree(file):
     
     if db.has_key(key):
         value = db[key]
-        print("The value to key '", key.decode(encoding = 'UTF-8'),"' is "\
-              , value.decode(encoding = 'UTF-8'))
         file.write(key + "\n" + value + "\n\n")
 
         # number of retrieved data is one since key is unique
