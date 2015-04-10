@@ -19,6 +19,11 @@
 
 import sys;
 import Create
+import destroy
+import btree
+import hashTree
+
+
 
 option = sys.argv[1]
 
@@ -35,17 +40,39 @@ while(True):
     try:
         digit = int(selection)
         if digit == 1:
-            Create.progOption(option)
+            Create.dbOpen(option)
+            
         elif digit == 2:
-            pass
+            if(option == btree):
+                btree.keySearch_Btree()
+            elif(option == "hash"):
+                hashTree.keySearch_Hashtree()
+            else:
+                pass
+            
         elif digit == 3:
-            pass
+            if(option == btree):
+                btree.valueSearch_Btree()
+            elif(option == "hash"):
+                hashTree.valueSearch_Hashtree()
+            else:
+                pass
+            
         elif digit == 4:
-            pass
+            if(option == btree):
+                btree.rangeSearch_Btree()
+            elif(option == "hash"):
+                hashTree.rangeSearch_Hashtree()
+            else:
+                pass
+            
         elif digit == 5:
-            pass
+            destroy.destroy()
+            
         elif digit == 6:
+            destroy.destroy()
             break
+        
         else:
             print("Must be between 1 and 6")
                 

@@ -75,6 +75,12 @@ def valueSearch_Btree():
 	if not retrievedKeys:
 		print("Data does not exist in database.")
 		
+	# IMPORTANT: CLOSE THE DATABASE
+    try:
+        db.close()
+    except Exception as e:
+        print (e)
+		
 	
 
 def rangeSearch_Btree():
@@ -117,6 +123,12 @@ def rangeSearch_Btree():
 		value = db[in_range_keys[i]].decode(encoding = 'UTF-8')
 		print("Key:", key)
 		print("Value: ", value)	
+	
+	# IMPORTANT: CLOSE THE DATABASE
+    try:
+        db.close()
+    except Exception as e:
+        print (e)
 
 if __name__ == "__main__":
 

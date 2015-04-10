@@ -1,4 +1,4 @@
 #!/bin/bash
 if [ -n "$1" ]; then
-  python ./Base.py $1
+  python3 ./Base.py $1
 fi

@@ -6,7 +6,7 @@ SEED = 10000000
 DA_FILE = "/tmp/my_db/sample_db"
 
 
-def progOption (option):
+def dbOpen (option):
     DA_FILE = raw_input("Enter database directory: ")
     
     if(option == "btree"):
