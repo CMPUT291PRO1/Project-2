@@ -16,7 +16,6 @@ DA_FILE = "/tmp/nmcarrol_db/sample_db"
 
 def valueSearch_Hashtree(file):
     
-    file = open("answers", 'w')
     
     print("HashTree value search")
     print("==========================================================")    

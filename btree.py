@@ -77,7 +77,7 @@ def valueSearch_Btree(file):
 		print("Data does not exist in database.")
 		
 	for key in retrievedKeys:
-        file.write(key + "\n" + data + "\n\n")
+		file.write(key + "\n" + data + "\n\n")
 		
 	# IMPORTANT: CLOSE THE DATABASE
 	try:
