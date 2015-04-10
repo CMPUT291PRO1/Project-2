@@ -124,7 +124,7 @@ def keySearch_Hashtree(file):
     
     if db.has_key(key):
         value = db[key]
-        file.write(key + "\n" + value + "\n\n")
+        
 
         # number of retrieved data is one since key is unique
         print("Record retrieved: 1")    
@@ -139,5 +139,6 @@ def keySearch_Hashtree(file):
         
     # compute time consumed
     print("Time used on HashTree key search is", time.time()-start_time)
+    file.write(key + "\n" + value + "\n\n")
     
     

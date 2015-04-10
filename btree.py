@@ -5,7 +5,7 @@ import timeit
 DA_FILE = "/tmp/nmcarrol_db/sample_db"
 
 # get option from Base function
-def keySearch_Btree():
+def keySearch_Btree(file):
 	
 	print("BTREE key search")
 	print("==========================================================")
@@ -40,9 +40,10 @@ def keySearch_Btree():
 	end_time = timeit.timeit()
 	# compute time consumed
 	print("Time used on BTREE key search is", end_time - start_time)
+	file.write(key + "\n" + value + "\n\n")
 	
 
-def valueSearch_Btree():
+def valueSearch_Btree(file):
 	
 	print("BTREE value search")
 	print("==========================================================")	
@@ -75,6 +76,9 @@ def valueSearch_Btree():
 	if not retrievedKeys:
 		print("Data does not exist in database.")
 		
+	for key in retrievedKeys:
+        file.write(key + "\n" + data + "\n\n")
+		
 	# IMPORTANT: CLOSE THE DATABASE
 	try:
 		db.close()
@@ -83,7 +87,7 @@ def valueSearch_Btree():
 		
 	
 
-def rangeSearch_Btree():
+def rangeSearch_Btree(file):
 	
 	print("BTREE range search")
 	print("==========================================================")
@@ -121,8 +125,7 @@ def rangeSearch_Btree():
 	for i in range(len(in_range_keys) ):
 		key = in_range_keys[i].decode(encoding = 'UTF-8')
 		value = db[in_range_keys[i]].decode(encoding = 'UTF-8')
-		print("Key:", key)
-		print("Value: ", value)	
+		file.write(key + "\n" + value + "\n\n")
 	
 	# IMPORTANT: CLOSE THE DATABASE
 	try:
