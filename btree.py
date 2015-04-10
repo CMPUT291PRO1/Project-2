@@ -2,7 +2,7 @@ import bsddb3 as bsddb
 import Create
 import timeit
 
-DA_FILE = "/tmp/my_db/sample_db"
+DA_FILE = "/tmp/nmcarrol_db/sample_db"
 
 # get option from Base function
 def keySearch_Btree():
@@ -76,10 +76,10 @@ def valueSearch_Btree():
 		print("Data does not exist in database.")
 		
 	# IMPORTANT: CLOSE THE DATABASE
-    try:
-        db.close()
-    except Exception as e:
-        print (e)
+	try:
+		db.close()
+	except Exception as e:
+		print (e)
 		
 	
 
@@ -125,10 +125,10 @@ def rangeSearch_Btree():
 		print("Value: ", value)	
 	
 	# IMPORTANT: CLOSE THE DATABASE
-    try:
-        db.close()
-    except Exception as e:
-        print (e)
+	try:
+		db.close()
+	except Exception as e:
+		print (e)
 
 if __name__ == "__main__":
 

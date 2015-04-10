@@ -6,7 +6,7 @@ Created on Apr 9, 2015
 import bsddb3 as bsddb
 import time
 
-DA_FILE = "/tmp/my_db/sample_db"
+DA_FILE = "/tmp/nmcarrol_db/sample_db"
 
 
     

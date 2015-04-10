@@ -1,13 +1,16 @@
 import bsddb3 as bsddb
 import random
+import os
 
 DB_SIZE = 100000
 SEED = 10000000
-DA_FILE = "/tmp/my_db/sample_db"
+DA_FILE = "/tmp/nmcarrol_db/sample_db"
+
+if not os.path.exists("/tmp/nmcarrol_db/"):
+    os.makedirs("/tmp/nmcarrol_db/")
 
 
 def dbOpen (option):
-    DA_FILE = raw_input("Enter database directory: ")
     
     if(option == "btree"):
         bTree()
