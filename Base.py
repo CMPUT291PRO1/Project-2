@@ -26,6 +26,7 @@ import hashTree
 
 
 option = sys.argv[1]
+file = open("answers", 'w')
 
 while(True):
     
@@ -46,7 +47,7 @@ while(True):
             if(option == btree):
                 btree.keySearch_Btree()
             elif(option == "hash"):
-                hashTree.keySearch_Hashtree()
+                hashTree.keySearch_Hashtree(file)
             else:
                 pass
             
@@ -54,7 +55,7 @@ while(True):
             if(option == btree):
                 btree.valueSearch_Btree()
             elif(option == "hash"):
-                hashTree.valueSearch_Hashtree()
+                hashTree.valueSearch_Hashtree(file)
             else:
                 pass
             
@@ -62,7 +63,7 @@ while(True):
             if(option == btree):
                 btree.rangeSearch_Btree()
             elif(option == "hash"):
-                hashTree.rangeSearch_Hashtree()
+                hashTree.rangeSearch_Hashtree(file)
             else:
                 pass
             
@@ -71,6 +72,7 @@ while(True):
             
         elif digit == 6:
             destroy.destroy()
+            file.close()
             break
         
         else:

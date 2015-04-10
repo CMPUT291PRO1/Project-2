@@ -10,6 +10,8 @@ if not os.path.exists("/tmp/nmcarrol_db/"):
     os.makedirs("/tmp/nmcarrol_db/")
 
 
+
+
 def dbOpen (option):
     
     if(option == "btree"):
