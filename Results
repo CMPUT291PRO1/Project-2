@@ -1,4 +1,4 @@
-(in micro seconds)
+(in seconds)
 
 Btree Key Search: 0.00032401084899902344 
 Btree Data Search: 0.22724103927612305
@@ -8,3 +8,6 @@ Hash Key Search: 0.00025930404
 Hash Data Search: 0.88059153556
 Hash Range Search: 0.25824270248
 
+
+Time used on IndexFile key search is 0.0001430511474609375
+0.4573979377746582
