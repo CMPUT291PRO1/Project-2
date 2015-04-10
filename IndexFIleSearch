@@ -1,0 +1,110 @@
+import bsddb3 as bsddb
+import Create
+import time
+
+DA_FILE = "/tmp/bowen1_db/sample_db"
+INVERTED_PATH = "/tmp/bowen1_db/sample_db2"
+def keySearch_IndexFile():
+	try:
+		db = bsddb.btopen(DA_FILE,"r")
+		inverted_db = bsddb.btopen(INVERTED_PATH, "r")
+	except:
+		print("Error opening database.")	
+	print("IndexFile key search")
+	key=input("Please Enter the key value: ").encode(encoding='UTF-8')
+	output=open("answers","a")
+	start=time.time()
+	if inverted_db.has_key(key):
+		value = inverted_db[key]
+		print("The value to key ", key.decode(encoding = 'UTF-8')," is ", value.decode(encoding = 'UTF-8'))
+		#end=time.time()
+		output.write(key.decode(encoding='UTF-8')+"\n")
+		output.write(value.decode(encoding='UTF-8')+"\n\n")
+		print("number of records retrieved: 1")
+	else:
+		print("This key is not in the database")
+	end=time.time()
+	time_used=(end-start)
+	print("Time used on IndexFile key search is", time_used)
+	output.close()
+
+def valueSearch_IndexFile():
+	try:
+		db = bsddb.btopen(DA_FILE,"r")
+		inverted_db = bsddb.btopen(INVERTED_PATH, "r")
+	except:
+		print("Error opening database.")	
+	data=str(input("Please Enter the data value: ")).encode(encoding='UTF-8')
+
+	output=open("answers","a")
+	start=time.time()
+	retrievedKeys = []
+	for j in db.keys():
+		if db[j] == data:
+			retrievedKeys.append(j.decode(encoding = 'UTF-8'))
+			end=time.time()
+			print("Time used on BTREE key search is", end - start)
+			print("Retrieved records: ", len(retrievedKeys))
+			print("Keys referring to this data: ", retrievedKeys)
+	if not retrievedKeys:
+		print("Data does not exist in database")			    
+	for i in retrievedKeys:
+		output.write(i+"\n")
+		output.write(data.decode(encoding='UTF-8')+"\n\n")
+	try:
+		inverted_db.close()
+	except Exception as e:
+		print (e)    
+	output.close() 
+
+def RangeSearch_IndexFile():
+	try:
+		db = bsddb.btopen(DA_FILE,"r")
+		inverted_db = bsddb.btopen(INVERTED_PATH, "r")
+	except:
+		print("Error opening database.")	
+	print("IndexFile range search")
+	print("===========================================================================")
+	output=open("answers","a")
+	checking = True
+	while checking:
+		checking = False
+		lower = input("Please enter lower bound:").encode(encoding = 'UTF-8')
+		upper = input("Please enter upper bound:").encode(encoding = 'UTF-8')
+		if lower > upper:
+			print("Invalid range. Try again.")
+			checking = True
+	start = time.time()
+	if lower==upper:
+		print('lower value is equal to upper value')
+		print('program will transfer to key search')
+		print('please do it again using key search')
+		print('')
+		keySearch_IndexFile()
+	else:
+		print(len(inverted_db.keys()))
+		list1=[]
+		up=0
+		lo=0
+		for i in range(len(inverted_db.keys())):
+			v_list = inverted_db.keys()
+			if v_list[i]==upper:
+				up=i
+			if v_list[i]==lower:
+				lo=i
+			if i >=lo:
+				list1.append(v_list[i].decode(encoding='UTF-8'))
+			print("The result of searching is:")
+			print("")
+	end = time.time()
+	time_used=(end-start)
+	for i in list1:
+		output.write(i+"\n")	
+	print("Time used on IndexFile key search is", time_used)
+	output.close()
+
+if __name__ == "__main__":
+	#Create.index()
+	#keySearch_IndexFile()
+	#valueSearch_IndexFile()
+	RangeSearch_IndexFile()
