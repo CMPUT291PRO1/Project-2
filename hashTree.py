@@ -5,7 +5,6 @@ Created on Apr 9, 2015
 '''
 import bsddb3 as bsddb
 import time
-import sys
 
 DA_FILE = "/tmp/nmcarrol_db/sample_db"
 
@@ -48,7 +47,7 @@ def valueSearch_Hashtree(file):
         print("Data does not exist in database.")
         
     for key in retrievedKeys:
-        file.write(key + "\n" + data + "\n\n")
+        file.write(key + "\n" + data.decode(encoding = 'UTF-8') + "\n\n")
         
     
     # IMPORTANT: CLOSE THE DATABASE
@@ -70,8 +69,7 @@ def rangeSearch_Hashtree(file):
     except:
         print("Error opening database.")
             
-    # record staring time
-    start_time = time.time()
+    
     
     checking = True
     while checking:
@@ -81,6 +79,9 @@ def rangeSearch_Hashtree(file):
         if lower > upper:
             print("Invalid range. Try again.")
             checking = True
+    
+    #record staring time
+    start_time = time.time()
     
     in_range_keys = []
     keys = db.keys()
@@ -138,6 +139,6 @@ def keySearch_Hashtree(file):
         
     # compute time consumed
     print("Time used on HashTree key search is", time.time()-start_time)
-    file.write(key + "\n" + value + "\n\n")
+    file.write(key.decode(encoding = 'UTF-8') + "\n" + value.decode(encoding = 'UTF-8') + "\n\n")
     
     

@@ -77,7 +77,7 @@ def valueSearch_Btree(file):
 		print("Data does not exist in database.")
 		
 	for key in retrievedKeys:
-		file.write(key + "\n" + data + "\n\n")
+		file.write(key + "\n" + data.decode(encoding = 'UTF-8') + "\n\n")
 		
 	# IMPORTANT: CLOSE THE DATABASE
 	try:
@@ -125,7 +125,7 @@ def rangeSearch_Btree(file):
 	for i in range(len(in_range_keys) ):
 		key = in_range_keys[i].decode(encoding = 'UTF-8')
 		value = db[in_range_keys[i]].decode(encoding = 'UTF-8')
-		file.write(key + "\n" + value + "\n\n")
+		file.write(key.decode(encoding = 'UTF-8') + "\n" + value.decode(encoding = 'UTF-8') + "\n\n")
 	
 	# IMPORTANT: CLOSE THE DATABASE
 	try:
